@@ -1,0 +1,54 @@
+FUNCTION size_Tab () : INTEGER
+VAR
+    n:INTEGER;
+BEGIN
+    REPEAT
+        Write (Enter the size of the table : );
+        Read (n);
+    UNTIL (n>0) 
+    return n;
+END
+
+PROCEDURE read_array (n:INTEGER, VAR T: ARRAY_OF INTEGER)
+VAR
+    i: INTEGER;
+BEGIN
+    FOR i FROM 0 TO n-1 DO 
+         Write (Enter the element 'i' of the table : );
+         Read (T[i]);    
+    END_FOR
+END
+
+PROCEDURE display_tab (n : INTEGER, T: ARRAY_OF INTEGER )
+VAR 
+     i : INTEGER; 
+BEGIN 
+     FOR i FROM 0 TO n-1 DO 
+        Write (T[i]);
+     END_FOR
+END
+
+ALGORITHM insertion_Sort
+VAR
+    n: INTEGER;
+    tab: ARRAY_OF INTEGER [100];
+    i,j, let: INTEGER;
+BEGIN
+    n:= size_Tab (); // to enter a n size positive number.
+
+    read_array(n,tab); // to enter the element of the table by the user.  
+
+    i:=1;
+    WHILE (i <= tab.length) DO    // insertion_Sort 
+        j:= i-1;
+        let:= tab[i];
+           WHILE (j>0 AND tab[j] > let) DO 
+              tab[j+1] := tab[j];
+              j:=j-1;
+           END_WHILE 
+        tab[j+1] := let;
+        i:= i+1;
+    END_WHILE
+
+    display_tab (n , tab); // to display the table after the sorting.   
+END
